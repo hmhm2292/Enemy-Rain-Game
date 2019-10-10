@@ -2,6 +2,7 @@ const onlyHero = new Hero('hero', '-70px 0px', '-103px 0px', '0px 0px', 500);
 
 const secondHero = new Hero('hero', '-70px 0px', '-103px 0px', '0px 0px', 300);
 
+let myHeroes = [onlyHero, secondHero];
 
 function eventListeners(leftKey, rightKey, heroName) {
   window.addEventListener('keydown', function (event) {
@@ -21,6 +22,7 @@ eventListeners('a', 'd', secondHero);
 
 setTimeout(() => new Enemy('ghost', '-45px 0px'), 500)
 
+
 function setIntervalX(delay, repetitions) {
   let x = 1;
   let intervalID = setInterval(function () {
@@ -33,3 +35,4 @@ function setIntervalX(delay, repetitions) {
 }
 
 setIntervalX(2500, 25);
+

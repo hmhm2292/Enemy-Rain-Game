@@ -6,8 +6,7 @@ class Enemy {
     this.topValue = 0;
     this.deadPic = deadPic;
     this.createEnemy();
-    this.move(onlyHero);
-    this.move(secondHero);
+    this.move();
   }
 
   createEnemy() {
@@ -18,20 +17,26 @@ class Enemy {
     bgId.appendChild(this.enemyDiv);
   }
 
-  move(heroName) {
+  move() {
     setInterval(() => {
-      if (this.topValue < 546) {
+      if (this.topValue < 547) {
         this.topValue += 13;
         this.enemyDiv.style.top = this.topValue + 'px';
-      } else if ((this.topValue + 2 === heroName.topValue + 2) && (heroName.leftValue < this.leftValue + 11 && heroName.leftValue > this.leftValue - 11)) {
-        this.enemyDiv.style.backgroundPosition = this.deadPic;
+      }
+      if (this.topValue > 546) {
         setTimeout(() => {
-          this.enemyDiv.remove(this.enemyDiv)
-        }, 500);
-      } else if (this.topValue >= 546) {
-        setTimeout(() => {
-          this.enemyDiv.remove()
-        }, 750);
+          this.enemyDiv.remove();
+        }, 100);
+      }
+      if (this.topValue > 530 && this.topValue < 546) {
+        myHeroes.forEach((element) => {
+          if ((element.leftValue < this.leftValue + 15 && element.leftValue > this.leftValue - 15)) {
+            this.enemyDiv.style.backgroundPosition = this.deadPic;
+            setTimeout(() => {
+              this.enemyDiv.remove(this.enemyDiv)
+            }, 200)
+          }
+        });
       }
     }, 300);
   }
